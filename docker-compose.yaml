@@ -1,0 +1,16 @@
+version: "3"
+services:
+        app:
+                build: ./docker
+                environment:
+                         - APP_MAIN_CLASS=${APP_MAIN_CLASS}
+                         - APP_DEBUG=${APP_DEBUG}
+                ports:
+                        - "${APP_TOMCAT_WEB_PORT}:8080"
+                        - "${APP_TOMCAT_DEBUG_PORT}:8000"
+                volumes:
+                        - "./pom.xml:/app/pom.xml"
+                        - "./src:/app/src"
+                        - "maven-m2:/root/.m2"
+volumes:
+        maven-m2:
